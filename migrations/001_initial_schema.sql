@@ -9,6 +9,7 @@ CREATE TYPE user_role AS ENUM ('super_admin', 'tenant_admin', 'executive');
 CREATE TYPE subscription_tier AS ENUM ('base', 'premium');
 CREATE TYPE project_status AS ENUM ('draft', 'active', 'paused', 'sold_out');
 CREATE TYPE parcel_status AS ENUM ('available', 'reserved', 'sold');
+CREATE TYPE property_type AS ENUM ('terreno', 'parcela', 'sitio', 'industrial');
 CREATE TYPE water_source AS ENUM ('apr', 'well', 'water_rights', 'none', 'unknown');
 CREATE TYPE electricity_status AS ENUM ('available', 'nearby', 'none', 'unknown');
 CREATE TYPE internet_status AS ENUM ('fiber', 'signal', 'none', 'unknown');
@@ -105,6 +106,7 @@ CREATE TABLE parcels (
   project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
   tenant_id UUID NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
   code TEXT NOT NULL,
+  property_type property_type NOT NULL DEFAULT 'parcela',
   rol TEXT,
   surface_m2 NUMERIC(10, 2) NOT NULL,
   price_uf NUMERIC(12, 2) NOT NULL,
@@ -139,6 +141,7 @@ CREATE TABLE parcels (
 CREATE INDEX idx_parcels_project ON parcels(project_id);
 CREATE INDEX idx_parcels_tenant ON parcels(tenant_id);
 CREATE INDEX idx_parcels_status ON parcels(status);
+CREATE INDEX idx_parcels_property_type ON parcels(property_type);
 CREATE INDEX idx_parcels_price ON parcels(price_uf);
 CREATE INDEX idx_parcels_location ON parcels(location_lat, location_lng);
 

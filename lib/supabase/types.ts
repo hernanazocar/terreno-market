@@ -75,6 +75,7 @@ export interface Database {
           project_id: string
           tenant_id: string
           code: string
+          property_type: 'terreno' | 'parcela' | 'sitio' | 'industrial'
           rol: string | null
           surface_m2: number
           price_uf: number

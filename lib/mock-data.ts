@@ -4,6 +4,7 @@ export const mockParcels = [
   {
     id: '1',
     code: 'HH-001',
+    property_type: 'parcela' as const,
     rol: '123-4567-8',
     surface_m2: 5000,
     price_uf: 3500,
@@ -45,6 +46,7 @@ export const mockParcels = [
   {
     id: '2',
     code: 'HH-002',
+    property_type: 'parcela' as const,
     rol: '123-4567-9',
     surface_m2: 8000,
     price_uf: 5200,
@@ -85,6 +87,7 @@ export const mockParcels = [
   {
     id: '3',
     code: 'HH-003',
+    property_type: 'sitio' as const,
     rol: '123-4568-0',
     surface_m2: 3000,
     price_uf: 2400,
@@ -104,6 +107,46 @@ export const mockParcels = [
     is_verified: false,
     gallery: [
       'https://images.unsplash.com/photo-1542224566-6e85f2e6772f?w=1200'
+    ],
+    project: {
+      id: 'proj-1',
+      name: 'Hacienda Las Higueras',
+      commune: 'Colina',
+      region: 'Región Metropolitana',
+      description: 'Exclusivo proyecto de parcelas de agrado en Chicureo. Entorno natural privilegiado con cercanía a colegios, centros comerciales y acceso directo a Ruta 5.',
+      amenities: ['Portón de acceso', 'Caminos interiores', 'Áreas verdes', 'Vigilancia 24/7', 'Red de agua potable', 'Electricidad subterránea'],
+    },
+    financing_terms: {
+      min_down_payment_pct: 20,
+      monthly_interest_rate: 0.027,
+      max_term_months: 60,
+      amortization_type: 'french' as const,
+      notes: 'Crédito directo sin pie adicional. Tasa fija durante todo el plazo.',
+    }
+  },
+  {
+    id: '4',
+    code: 'HH-004',
+    property_type: 'terreno' as const,
+    rol: '123-4568-1',
+    surface_m2: 6000,
+    price_uf: 4100,
+    price_clp: 164000000,
+    status: 'available' as const,
+    water_source: 'water_rights' as const,
+    water_details: 'Derechos de agua inscritos (0.5 acciones). Fácil constitución de pozo.',
+    electricity: 'available' as const,
+    internet: 'fiber' as const,
+    buildable_summary: 'Terreno esquina con doble acceso. Permitido hasta 2 viviendas.',
+    max_construction_m2: 600,
+    max_houses: 2,
+    sag_conaf_restrictions: 'Sin restricciones.',
+    location_lat: -33.1750,
+    location_lng: -70.6500,
+    slope: 'Terreno plano con arboleda nativa',
+    is_verified: true,
+    gallery: [
+      'https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?w=1200'
     ],
     project: {
       id: 'proj-1',

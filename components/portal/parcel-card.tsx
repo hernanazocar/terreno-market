@@ -4,10 +4,12 @@ import { Badge } from "@/components/ui/badge"
 import { MapPin, Maximize, Droplet, Zap, Wifi, CheckCircle2 } from "lucide-react"
 import { formatUF, formatCLP, formatM2 } from "@/lib/utils"
 import { WATER_SOURCE_LABELS, ELECTRICITY_LABELS, INTERNET_LABELS } from "@/lib/constants"
+import { getPropertyTypeLabel, type PropertyType } from "@/lib/property-types"
 
 interface Parcel {
   id: string
   code: string
+  property_type: PropertyType
   surface_m2: number
   price_uf: number
   price_clp: number
@@ -44,6 +46,9 @@ export function ParcelCard({ parcel }: ParcelCardProps) {
           />
           {/* Badges sobre la imagen */}
           <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+            <Badge variant="default" className="backdrop-blur-sm bg-background/90 text-foreground border">
+              {getPropertyTypeLabel(parcel.property_type)}
+            </Badge>
             {parcel.is_verified && (
               <Badge variant="success" className="backdrop-blur-sm bg-success/90">
                 <CheckCircle2 className="h-3 w-3 mr-1" />

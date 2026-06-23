@@ -4,10 +4,12 @@ import { useState, useMemo } from "react"
 import { ParcelFilters } from "./parcel-filters"
 import { ParcelCard } from "./parcel-card"
 import { Badge } from "@/components/ui/badge"
+import type { PropertyType } from "@/lib/property-types"
 
 interface Parcel {
   id: string
   code: string
+  property_type: PropertyType
   surface_m2: number
   price_uf: number
   price_clp: number
@@ -25,6 +27,7 @@ interface Parcel {
 
 interface Filters {
   search: string
+  propertyType: PropertyType | null
   comuna: string | null
   minPrice: number | null
   maxPrice: number | null
@@ -41,6 +44,7 @@ interface ParcelFiltersClientProps {
 export function ParcelFiltersClient({ parcels }: ParcelFiltersClientProps) {
   const [filters, setFilters] = useState<Filters>({
     search: '',
+    propertyType: null,
     comuna: null,
     minPrice: null,
     maxPrice: null,
@@ -61,6 +65,11 @@ export function ParcelFiltersClient({ parcels }: ParcelFiltersClientProps) {
           parcel.code.toLowerCase().includes(searchLower) ||
           parcel.project.commune.toLowerCase().includes(searchLower)
         if (!matchesSearch) return false
+      }
+
+      // Tipo de propiedad
+      if (filters.propertyType && parcel.property_type !== filters.propertyType) {
+        return false
       }
 
       // Comuna
